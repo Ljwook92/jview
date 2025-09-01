@@ -1,27 +1,31 @@
 \name{view}
 \alias{jview}
 \title{Simple Jupyter Notebook Viewer Addin for RStudio}
+
 \usage{
+view(path, template = "classic")
+}
 
-# Load library
-library(jview)
-
-# Run
-view("path/to/your_notebook.ipynb")
-
+\arguments{
+  \item{path}{Character string. File path to a `.ipynb` notebook. Must end in `.ipynb`.}
+  \item{template}{Character string. HTML template to use. Either \code{"classic"} (default) or \code{"lab"}.}
 }
 
 \description{
 Provides an RStudio Addin to render and preview Jupyter Notebook (.ipynb) files
-directly in the RStudio Viewer. Uses Quarto when available, and falls back to Jupyter nbconvert
-for environments without Quarto installed.
+directly in the RStudio Viewer. Uses Jupyter nbconvert under the hood.
 }
-\examples{
-library(jview)
-view("your_ipynb_path_here.ipynb")
 
+\examples{
+# basic usage
+library(jview)
+view("your_notebook.ipynb")
+
+# with template option
+view("your_notebook.ipynb", template = "lab")
 }
 
 \author{
- J. Seo & J.W Lee \email{gunzion12@gmail.com}
+J.W. Lee \email{gunzion12@gmail.com} \cr
+J. Seo (Contributor)
 }
