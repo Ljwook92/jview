@@ -6,30 +6,47 @@
 #' change the template to `"lab"`.
 #'
 #' @details
-#' By default this function uses the **classic** Jupyter HTML template.
-#' It requires a working `jupyter nbconvert` in your PATH. If you need
-#' Quarto or Pandoc fallbacks, you can extend this function accordingly.
+#' By default, this function uses the **classic** Jupyter HTML template.
+#' It requires a working `jupyter nbconvert` in your system PATH.
+#' If you need Quarto or Pandoc fallbacks, you can extend this function accordingly.
 #'
-#' @param path Character scalar; path to a `.ipynb` file.
+#' @param path Character scalar. Path to a `.ipynb` file.
+#' @param template Character scalar. Template style for HTML rendering.
+#'   Either `"classic"` (default) or `"lab"`.
+#'
 #' @return (invisible) Path to the rendered HTML file.
 #'
 #' @examples
 #' ex <- system.file("examples", "example.ipynb", package = "jview")
 #' if (nzchar(ex) && file.exists(ex)) {
-#'   view(ex, viewer = "none")
+#'   view(ex)                    # default: classic
+#'   view(ex, template = "lab") # lab template
 #' }
-#' @export
 #'
-view <- function(path) {
+#' @author
+#' Jeong Wook Lee \email{gunzion12@gmail.com} \cr
+#' Jung-In Seo (contributor)
+#'
+#' @export
+view <- function(path, template = "classic") {
+  # Check valid extension
   if (!nzchar(path) || !grepl("\\.ipynb$", path, ignore.case = TRUE)) {
-    stop("Pass a .ipynb file path.")
+    stop("Invalid input: please provide a valid path to a '.ipynb' file.")
+  }
+
+  # Check file exists
+  if (!file.exists(path)) {
+    stop(paste("File does not exist at the specified path:\n", path, "\nPlease check the file path and try again."))
+  }
+
+  # Validate template
+  if (!template %in% c("classic", "lab")) {
+    stop("Invalid template. Please use 'classic' or 'lab'.")
   }
 
   out_dir  <- tempdir()
   out_name <- "ipynb_preview.html"
   out_html <- file.path(out_dir, out_name)
-
-  template <- "classic"  # or "lab"
 
   status <- system2(
     "jupyter",
@@ -40,15 +57,12 @@ view <- function(path) {
       "--output-dir", out_dir,
       shQuote(path))
   )
+
   if (status != 0 || !file.exists(out_html)) {
-    stop("nbconvert failed (check jupyter/nbconvert installed).")
+    stop("nbconvert failed. Please ensure that Jupyter and nbconvert are installed, and the input file is valid.")
   }
 
   viewer <- getOption("viewer")
   if (is.function(viewer)) viewer(out_html) else utils::browseURL(out_html)
   invisible(out_html)
 }
-
-#' @rdname view
-#' @export
-view <- view
