@@ -11,24 +11,20 @@
 #' Quarto or Pandoc fallbacks, you can extend this function accordingly.
 #'
 #' @param path Character scalar; path to a `.ipynb` file.
-#'
-#' @return (Invisibly) the path to the generated HTML file.
+#' @return (invisible) Path to the rendered HTML file.
 #'
 #' @examples
-#' \dontrun{
-#' # Basic usage
-#' jview::view("path/to/notebook.ipynb")
-#'
-#' # The alias works the same way:
-#' jview::view_ipynb("path/to/notebook.ipynb")
+#' ex <- system.file("examples", "example.ipynb", package = "jview")
+#' if (nzchar(ex) && file.exists(ex)) {
+#'   view(ex, viewer = "none")
 #' }
-#'
-#' @seealso \code{\link{view}}
 #' @export
+#'
 view <- function(path) {
   if (!nzchar(path) || !grepl("\\.ipynb$", path, ignore.case = TRUE)) {
     stop("Pass a .ipynb file path.")
   }
+
   out_dir  <- tempdir()
   out_name <- "ipynb_preview.html"
   out_html <- file.path(out_dir, out_name)
