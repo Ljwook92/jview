@@ -17,12 +17,14 @@ directly in the RStudio Viewer. Uses Jupyter nbconvert under the hood.
 }
 
 \examples{
-# basic usage
-library(jview)
-view("your_notebook.ipynb")
+# Load example notebook from package
+ex <- system.file("examples", "Example.ipynb", package = "jview")
 
-# with template option
-view("your_notebook.ipynb", template = "lab")
+# If the file exists, preview it
+if (nzchar(ex) && file.exists(ex)) {
+  view(ex)                    # default template = "classic"
+  view(ex, template = "lab")  # lab style
+}
 }
 
 \author{
