@@ -2,40 +2,45 @@
 % Please edit documentation in R/crmd.R
 \name{crmd}
 \alias{crmd}
-\title{Convert Jupyter Notebook to R Markdown}
-\usage{
-crmd(input, path = getwd(), output = "convert_rmd.Rmd", extract = c("all", "code", "markdown"))
-}
+\title{Convert Jupyter Notebook (.ipynb) to R Markdown (.Rmd)}
 \arguments{
-\item{input}{Path to the input `.ipynb` file.}
+\item{input}{Character scalar. Path to the input `.ipynb` file.}
 
-\item{path}{Directory where the `.Rmd` will be saved. Defaults to the current working directory.}
+\item{path}{Character scalar. Directory where the `.Rmd` will be saved.
+Defaults to the current working directory.}
 
-\item{output}{File name for the `.Rmd` file. Defaults to `"convert_rmd.Rmd"`.}
+\item{output}{Character scalar. File name for the output `.Rmd` file.
+Defaults to `"convert_rmd.Rmd"`.}
 
-\item{extract}{One of `"all"`, `"code"`, or `"markdown"`. Controls which types of cells to extract.}
+\item{extract}{Character scalar. Cell types to extract:
+`"all"` (default), `"code"`, or `"markdown"`.}
 }
 \value{
-A message string: `"Convert success."`
+(invisible) A message string: `"Convert success."`
 }
 \description{
-Convert Jupyter Notebook (.ipynb) to R Markdown (.Rmd)
+Convert a Jupyter Notebook (`.ipynb`) into an R Markdown (`.Rmd`) file by
+extracting code cells, markdown cells, or both. The result is a plain Rmd file
+that can be rendered or edited in RStudio.
 }
 \details{
-This function converts a Jupyter Notebook (`.ipynb`) file into an R Markdown (`.Rmd`) file.
-It allows you to extract code cells, markdown cells, or both, and lets you specify
-the output directory and filename.
+This function reads a Jupyter `.ipynb` file and transforms it into an `.Rmd`
+document, maintaining the notebook structure. You can control which cells are
+included using the `extract` argument. By default, both code and markdown
+cells are included.
 }
 \examples{
 \dontrun{
 crmd("notebook.ipynb")
 crmd("notebook.ipynb", extract = "code")
-crmd("notebook.ipynb", path = "reports/", output = "my_report.Rmd")
-}
+crmd("notebook.ipynb", path = "reports/", output = "lecture.Rmd")
 }
 
+}
 \author{
 Jung-In Seo \cr
 Jeong Wook Lee \email{gunzion12@gmail.com}
-}
 
+Convert Jupyter Notebook (.ipynb) to R Markdown (.Rmd)
+...
+}
