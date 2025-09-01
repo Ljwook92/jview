@@ -7,7 +7,7 @@
 library(jview)
 
 # Run
-jview::view("path/to/your_notebook.ipynb")
+view("path/to/your_notebook.ipynb")
 
 }
 
@@ -17,10 +17,11 @@ directly in the RStudio Viewer. Uses Quarto when available, and falls back to Ju
 for environments without Quarto installed.
 }
 \examples{
-install.packages("remotes")
-remotes::install_github("Ljwook92/jview")
-
 library(jview)
 view("your_ipynb_path_here.ipynb")
 
+}
+
+\author{
+ J. Seo & J.W Lee \email{gunzion12@gmail.com}
 }
