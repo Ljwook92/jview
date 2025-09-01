@@ -1,0 +1,4 @@
+Name: View .ipynb in Viewer
+Description: Render and preview the current .ipynb in the RStudio Viewer
+Binding: view
+Interactive: true
