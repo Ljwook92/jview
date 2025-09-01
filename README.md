@@ -39,10 +39,46 @@ After installing the package, you can also launch the viewer via the RStudio Add
 # Example with a sample notebook
 jview::view_ipynb("your_ipynb_path_here.ipynb")
 ```
+![/example.png](/example.png)
 
 ## Requirements
 	•	R (>= 4.0)
 	•	Quarto (recommended), or alternatively Jupyter with nbconvert installed
 	•	RStudio (to use the Addin integration)
-![/example.png](/example.png)
 
+> ❗ If you get an error like:
+>
+> ```
+> sh: 1: jupyter: not found
+> Error: nbconvert failed. Please ensure that Jupyter and nbconvert are installed.
+> ```
+>
+> it means that R cannot find the `jupyter` command on your system.
+> 
+> To resolve this, install Jupyter (with nbconvert) using one of the following methods:
+
+### ✅ Option 1: Using pip (recommended)
+
+```bash
+pip install notebook
+```
+
+### ✅ Option 2: Using conda
+```bash
+conda install notebook
+```
+
+### ✅ After installation
+```bash
+jupyter nbconvert --version
+```
+Or check from inside R:
+
+```r
+Sys.which("jupyter")
+```
+If it's still not detected, you may need to manually add the Jupyter binary directory to your `PATH` using:
+
+```r
+Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/path/to/jupyter/bin", sep = ":"))
+```
