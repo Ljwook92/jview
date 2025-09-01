@@ -3,7 +3,7 @@
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)
 
 
-## jview
+## A new `jview` Package
 I created this package because I wanted a simple way to preview .ipynb files directly inside RStudio. The package uses Jupyter nbconvert under the hood, so you can conveniently render and view Jupyter Notebook files in the RStudio Viewer without leaving your R session.
 
 ## Installation
