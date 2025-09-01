@@ -24,8 +24,8 @@
 #' }
 #'
 #' @author
-#' Jeong Wook Lee \email{gunzion12@gmail.com} \cr
-#' Jung-In Seo (contributor)
+#' Jung-In Seo \cr
+#' Jeong Wook Lee \email{gunzion12@gmail.com}
 #'
 #' @export
 view <- function(path, template = "classic") {

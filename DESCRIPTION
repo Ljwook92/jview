@@ -25,3 +25,4 @@ License: MIT
 LazyData: true
 URL: https://github.com/Ljwook92/jview
 BugReports: https://github.com/Ljwook92/ipynbviewer/issues
+RoxygenNote: 7.3.2
