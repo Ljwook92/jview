@@ -15,7 +15,8 @@ Description: Provides an RStudio Addin to render and preview Jupyter Notebook (.
 Depends: R (>= 4.0)
 Imports: 
     rstudioapi,
-    utils
+    utils,
+    jsonlite
 Suggests: 
     quarto,
     rmarkdown,
